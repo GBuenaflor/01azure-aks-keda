@@ -7,7 +7,7 @@
 High Level Architecture Diagram:
 
 
-![Image description](https://github.com/GBuenaflor/01azure-aks-keda/blob/master/GB-AKS-KEDA01.png)
+![Image description](https://github.com/GBuenaflor/01azure-aks-keda/blob/master/Images/GB-AKS-KEDA01.png)
 
 
 
