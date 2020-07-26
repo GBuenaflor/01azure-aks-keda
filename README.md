@@ -1,6 +1,6 @@
 ----------------------------------------------------------
 # Azure Kubernetes Services (AKS) - Part 06
-# Azure Kubernetes based event-driven autoscaling using KEDA
+# AKS based event-driven autoscaling using KEDA
 
 
 
@@ -13,5 +13,6 @@ High Level Architecture Diagram:
 
 Configuration Flow :
 
+This Repository is under construction, stay tuned...
 
 ----------------------------------------------------------
