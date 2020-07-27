@@ -1,6 +1,7 @@
 ----------------------------------------------------------
 # Azure Kubernetes Services (AKS) - Part 06
 # AKS based event-driven autoscaling using KEDA
+Link to other Microsoft Azure projects https://github.com/GBuenaflor/01azure
 
 
 
