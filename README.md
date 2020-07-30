@@ -14,7 +14,9 @@ High Level Architecture Diagram:
 
 Configuration Flow :
 
-This Repository is under construction, stay tuned...
+```diff
+   - This Repository is under construction, stay tuned...
+ ```
 
 
 </br>
