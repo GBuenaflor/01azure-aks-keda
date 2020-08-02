@@ -1,6 +1,6 @@
 ----------------------------------------------------------
 # Azure Kubernetes Services (AKS) - Part 06
-# AKS based event-driven autoscaling using KEDA
+# AKS based event-driven autoscaling using KEDA with Function App Docker Container 
 
 #### High Level Architecture Diagram:
 
