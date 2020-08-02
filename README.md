@@ -2,14 +2,14 @@
 # Azure Kubernetes Services (AKS) - Part 06
 # AKS based event-driven autoscaling using KEDA
 
-High Level Architecture Diagram:
+#### High Level Architecture Diagram:
 
 
 ![Image description](https://github.com/GBuenaflor/01azure-aks-keda/blob/master/Images/GB-AKS-KEDA03.png)
 
 
 
-Configuration Flow :
+#### Configuration Flow :
 
 1. Provision the environment using Azure Terraform
 2. Create a Azure Function App Container
@@ -18,7 +18,7 @@ Configuration Flow :
 5. Save data in the Azure Storage Queue, trigger from a web app or console app
 6. View the event driven autoscaling using KEDA
 
-Prerequisite - Environment setup
+#### Prerequisite - Environment setup
 
 - Windows 10 EnterpriseN, Verion 1809 ,VM Size [DS2_V3]
 - Install Docker for Windows
@@ -76,8 +76,7 @@ Select  > queuetrigger
 ```
 
 
-### In the code, update the the QueueTrigger details from functionapp01.cs file
-### The queue name must match the queue name created by the terraform
+### In the code, update the the QueueTrigger details from functionapp01.cs file. The queue name must match the queue name created by the terraform
 
 ```
 public static void Run([QueueTrigger("az-strorage-queue01", Connection = "azstorageaccnt01_connection")]string myQueueItem, ILogger log)
@@ -161,8 +160,8 @@ kubectl get deploy
 ## 5.  Save data in the Azure Storage Queue, trigger from a web app or console app
 
 ### Use the code to save messages in the Azure Queue
-### In Web App, you normally save shopping cart data to the queue
-### In Console App, you can iterate and save dummy data to the queue
+#### - In Web App, you normally save shopping cart data to the queue
+#### - In Console App, you can iterate and save dummy data to the queue
 
 ```
  string azstorageaccnt01_connection = "DefaultEndpointsProtocol=https;AccountName=azstorageaccnt01;AccountKey=s9FysFde5b7D5GbrCWsgyYqLNNxw65xvFqdler10aibcvLC8sL2a0On96wQ/j08gxNSs65mBHpKAQ6nMB/CG6g==;EndpointSuffix=core.windows.net";
