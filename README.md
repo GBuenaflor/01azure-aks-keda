@@ -178,7 +178,7 @@ kubectl get deploy
 
 ### Use the code to save messages in the Azure Queue
 #### - In Web App, you normally save shopping cart data to the queue
-#### - In Console App, you can iterate and save dummy data to the queue
+#### - In Console App, you can iterate and save data to the queue manually
 
 ```
  string azstorageaccnt01_connection = "DefaultEndpointsProtocol=https;AccountName=azstorageaccnt01;AccountKey=s9FysFde5b7D5GbrCWsgyYqLNNxw65xvFqdler10aibcvLC8sL2a0On96wQ/j08gxNSs65mBHpKAQ6nMB/CG6g==;EndpointSuffix=core.windows.net";
