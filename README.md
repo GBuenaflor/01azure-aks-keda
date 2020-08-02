@@ -18,7 +18,7 @@ Configuration Flow :
 5. Save data in the Azure Storage Queue, trigger from a web app or console app
 6. View the event driven autoscaling using KEDA
 
-Prerequisuite - Environment setup
+Prerequisite - Environment setup
 
 - Windows 10 EnterpriseN, Verion 1809 ,VM Size [DS2_V3]
 - Install Docker for Windows
@@ -56,20 +56,20 @@ kubectl get nodes
 ----------------------------------------------------------
 ## 2. Create a Azure Function App Container
 
+### Open a commandline -run as Administrator
+
 ```
 func init --docker
 select > dotnet
 
 ```
 
-
 ```
 func new functionapp01
 Select  > queuetrigger
 ```
 
-### View the function App using VS2019
-### Add the Storage Queue Access key to the project, opn local.settings.json file
+### Add the Storage Queue Access key to the FunctionApp project, open local.settings.json file
 
 ```
   "azstorageaccnt01_connection": "DefaultEndpointsProtocol=https;AccountName=azstorageaccnt01;AccountKey=s9FysFde5b7D5GbrCWsgyYqLNNxw65xvFqdler10aibcvLC8sL2a0On96wQ/j08gxNSs65mBHpKAQ6nMB/CG6g==;EndpointSuffix=core.windows.net"
@@ -98,33 +98,28 @@ public static void Run([QueueTrigger("myqueue-items", Connection = "azstorageacc
 az acr login --name azacr10
 
 # Tag container image
-# az acr show --name <acrName> --query loginServer --output table
   az acr show --name azacr10 --query loginServer --output table
 
 docker images
 
 # Tag the weblinux1 image with the loginServer of container registry
-# docker tag <Repository> <acrLoginServer>/aci-tutorial-app:v1 
   docker tag fucntionapp01 azacr10.azurecr.io/fucntionapp01:v1
 
 
 # Push image to Azure Container Registry
-# docker push <acrLoginServer>/aci-tutorial-app:v1
   docker push azacr10.azurecr.io/fucntionapp01:v1
 
 
 # List images in Azure Container Registry
-# az acr repository list --name <acrName> --output table
   az acr repository list --name azacr10 --output table
 
 # View the tags for a specific images
-# az acr repository show-tags --name <acrName> --repository aci-tutorial-app --output table
   az acr repository show-tags --name azacr10 --repository fucntionapp01 --output table
  
 ```
 
 ----------------------------------------------------------
-## 4. Install KEDA to aks cluster and deploy the function app 
+## 4. Install KEDA to aks cluster and deploy the function app container
 
 
 ### Install KEDA
@@ -134,13 +129,10 @@ func kubernetes install --namespace keda --validate=false
 
 ### Deploy the function App using Azure Container Registry
 ```
-
+func kubernetes deploy --name <name-of-function-deployment> --registry <acr-login-server>
 func kubernetes deploy --name functionapp01 --registry azacr10.azurecr.io
-
-# Using Docker Hub 
-func kubernetes deploy --name functionapp01 --registry gbbuenaflor
-
 ```
+ 
  
 ### Deploy the function App using Docker Hub 
 
@@ -150,6 +142,7 @@ func kubernetes deploy --name functionapp01 --registry gbbuenaflor
 
 - Deploy the function App container
  func kubernetes deploy --name <name-of-function-deployment> --registry <container-registry-username>
+ func kubernetes deploy --name functionapp01 --registry gbbuenaflor
 
 ```
  
@@ -188,7 +181,12 @@ kubectl get deploy
 ## 6. View the event driven autoscaling using KEDA
 
 
+### View the
+
 ![Image description](https://github.com/GBuenaflor/01azure-aks-keda/blob/master/Images/GB-AKS-KEDA04.png)
+
+
+### View the
 
 ![Image description](https://github.com/GBuenaflor/01azure-aks-keda/blob/master/Images/GB-AKS-KEDA05.png)
 
