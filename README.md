@@ -56,7 +56,7 @@ kubectl get nodes
 ----------------------------------------------------------
 ## 2. Create a Azure Function App Container
 
-### Open a commandline -run as Administrator
+### Open a commandline, run as Administrator
 
 ```
 func init --docker
@@ -69,17 +69,18 @@ func new functionapp01
 Select  > queuetrigger
 ```
 
-### Add the Storage Queue Access key to the FunctionApp project, open local.settings.json file
+### Add the Azure Storage Queue Access key to local.settings.json file from the FunctionApp project.
 
 ```
   "azstorageaccnt01_connection": "DefaultEndpointsProtocol=https;AccountName=azstorageaccnt01;AccountKey=s9FysFde5b7D5GbrCWsgyYqLNNxw65xvFqdler10aibcvLC8sL2a0On96wQ/j08gxNSs65mBHpKAQ6nMB/CG6g==;EndpointSuffix=core.windows.net"
 ```
 
 
-### In the code add the connection
+### In the code, update the the QueueTrigger details from functionapp01.cs file
+### The queue name must match the queue name created by the terraform
 
 ```
-public static void Run([QueueTrigger("myqueue-items", Connection = "azstorageaccnt01_connection")]string myQueueItem, ILogger log)
+public static void Run([QueueTrigger("az-strorage-queue01", Connection = "azstorageaccnt01_connection")]string myQueueItem, ILogger log)
 ```
       
 
@@ -95,7 +96,8 @@ public static void Run([QueueTrigger("myqueue-items", Connection = "azstorageacc
 
 ### Using Azure Container Registry
 ```
-az acr login --name azacr10
+# Login to ACR
+  az acr login --name azacr10
 
 # Tag container image
   az acr show --name azacr10 --query loginServer --output table
@@ -108,7 +110,6 @@ docker images
 
 # Push image to Azure Container Registry
   docker push azacr10.azurecr.io/fucntionapp01:v1
-
 
 # List images in Azure Container Registry
   az acr repository list --name azacr10 --output table
@@ -127,27 +128,30 @@ docker images
 func kubernetes install --namespace keda --validate=false
 ```
 
-### Deploy the function App using Azure Container Registry
+### Deploy the function App from Azure Container Registry to aks
 ```
-func kubernetes deploy --name <name-of-function-deployment> --registry <acr-login-server>
-func kubernetes deploy --name functionapp01 --registry azacr10.azurecr.io
+- Login to ACR
+ az acr login --name azacr10
+ 
+# func kubernetes deploy --name <name-of-function-deployment> --registry <acr-login-server>
+  func kubernetes deploy --name functionapp01 --registry azacr10.azurecr.io
 ```
  
  
-### Deploy the function App using Docker Hub 
+### Deploy the function App from DockerHub to aks 
 
 ```
 - Login to Docker Hub
   docker login
 
 - Deploy the function App container
- func kubernetes deploy --name <name-of-function-deployment> --registry <container-registry-username>
- func kubernetes deploy --name functionapp01 --registry gbbuenaflor
+# func kubernetes deploy --name <name-of-function-deployment> --registry <container-registry-username>
+  func kubernetes deploy --name functionapp01 --registry gbbuenaflor
 
 ```
  
  
-### Check the dpeloyment
+### Check the deployment
 
 ```
 kubectl get deploy
@@ -157,6 +161,8 @@ kubectl get deploy
 ## 5.  Save data in the Azure Storage Queue, trigger from a web app or console app
 
 ### Use the code to save messages in the Azure Queue
+### In Web App, you normally save shopping cart data to the queue
+### In Console App, you can iterate and save dummy data to the queue
 
 ```
  string azstorageaccnt01_connection = "DefaultEndpointsProtocol=https;AccountName=azstorageaccnt01;AccountKey=s9FysFde5b7D5GbrCWsgyYqLNNxw65xvFqdler10aibcvLC8sL2a0On96wQ/j08gxNSs65mBHpKAQ6nMB/CG6g==;EndpointSuffix=core.windows.net";
@@ -181,12 +187,12 @@ kubectl get deploy
 ## 6. View the event driven autoscaling using KEDA
 
 
-### View the
+### View the function app deployment using acr and dockerhub repository
 
 ![Image description](https://github.com/GBuenaflor/01azure-aks-keda/blob/master/Images/GB-AKS-KEDA04.png)
 
 
-### View the
+### View the autoscaling, the number of pods and number of deployments within aks
 
 ![Image description](https://github.com/GBuenaflor/01azure-aks-keda/blob/master/Images/GB-AKS-KEDA05.png)
 
