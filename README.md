@@ -186,15 +186,26 @@ kubectl get deploy
 ## 6. View the event driven autoscaling using KEDA
 
 
-### View the function app deployment using acr and dockerhub repository
+### View the function app deployment using acr 
 
 ![Image description](https://github.com/GBuenaflor/01azure-aks-keda/blob/master/Images/GB-AKS-KEDA04.png)
+
+### View the function app deployment using dockerhub
+
+![Image description](https://github.com/GBuenaflor/01azure-aks-keda/blob/master/Images/GB-AKS-KEDA05.png)
+
 
 
 ### View the autoscaling, the number of pods and number of deployments within aks
 
-![Image description](https://github.com/GBuenaflor/01azure-aks-keda/blob/master/Images/GB-AKS-KEDA05.png)
+### Scale Up
 
+![Image description](https://github.com/GBuenaflor/01azure-aks-keda/blob/master/Images/GB-AKS-KEDA06.png)
+
+
+### Scale Down
+
+![Image description](https://github.com/GBuenaflor/01azure-aks-keda/blob/master/Images/GB-AKS-KEDA07.png)
 
 
 ----------------------------------------------------------
