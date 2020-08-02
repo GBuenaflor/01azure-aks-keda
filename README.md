@@ -20,7 +20,6 @@
 
 #### Prerequisite - Environment setup
 
-- Windows 10 EnterpriseN, Verion 1809 ,VM Size [DS2_V3]
 - Install Docker for Windows
   https://docs.docker.com/docker-for-windows/install/  
 - Install VS2019 Community Edition
