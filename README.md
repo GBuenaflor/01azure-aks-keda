@@ -230,7 +230,6 @@ kubectl get deploy
  
 Link to other Microsoft Azure projects
 https://github.com/GBuenaflor/01azure
-</br>
+ 
 
-Note: My Favorite > Microsoft Technologies.
-----------------------------------------------------------
+Note: My Favorite -> Microsoft :D 
